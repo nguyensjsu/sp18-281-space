@@ -1,47 +1,35 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
+	"html/template"
 	"net/http"
 
-	"github.com/gocql/gocql"
+	"github.com/go-redis/redis"
+	"github.com/gorilla/mux"
 )
 
-type heartbeatResponse struct {
-	Status string `json: "status"`
-	Code   int    `json:"code"`
-}
+var templates *template.Template
+var client *redis.Client
 
 func main() {
 	fmt.Println("Start ...")
-	// aRouter := mux.NewRouter().StrictSlash(true)
-	// aRouter.HandleFunc("/", myheartbeat)
-	// log.Fatal(http.ListenAndServe(":8080", aRouter))
 
-	cluster := gocql.NewCluster("127.0.0.1")
-	cluster.Keyspace = "counterdb"
-	session, _ := cluster.CreateSession()
+	client = redis.NewClient(&redis.Options{
+		Addr: "127.0.0.1:6379",
+	})
 
-	fmt.Println("Create Keyspace successfully")
-
-	// Insert employeee
-	if err := session.Query("INSERT INTO customer(customerid, customer_first, customer_last, customer_email, customer_password) VALUES (1, 'Hoang', 'Nguyen', 'hoang1127@gmail.com', 'abc123')").Exec(); err != nil {
-		log.Fatal(err)
-	}
-	var firstname string
-	fmt.Println("Insert into Customer table")
-
-	if err := session.Query("SELECT customer_first FROM customer ").Scan(&firstname); err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(firstname)
-
-	defer session.Close()
+	templates = template.Must(template.ParseGlob("templates/*.html"))
+	router := mux.NewRouter()
+	router.HandleFunc("/", indexHandler).Methods("GET")
+	http.Handle("/", router)
+	http.ListenAndServe(":8080", nil)
 }
 
-func myheartbeat(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(heartbeatResponse{Status: "OK", Code: 300})
+func indexHandler(writer http.ResponseWriter, re *http.Request) {
+	comments, err := client.LRange("customer", 0, 10).Result()
+	if err != nil {
+		return
+	}
+	templates.ExecuteTemplate(writer, "index.html", comments)
 }
