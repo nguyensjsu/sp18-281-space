@@ -225,7 +225,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#D3B48D;}
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#D3B48D; border-color:#D3B48D;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
-
+.qty_input{width: 222px;}
 /* Rows */
 .row0, .row0 a{}
 .row1, .row1 a{}
@@ -244,7 +244,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#D3B48D;}
 
 
 /* Content Area */
-.services li figure{border-color:#D3B48D;}
+.services li figure{border-color:#D3B48D; display: inline-block;}
 .services li figure figcaption{color:#FFFFFF; background-color:#D3B48D;}
 
 .testimonial blockquote{color:rgba(255,255,255,.5); background-color:rgba(0,0,0,.2); border-color:rgba(0,0,0,.5);}
