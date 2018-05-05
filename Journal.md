@@ -19,14 +19,15 @@ can connect with a Go API and each database serve for one single feature of the 
 **Apr 15 :**
 
  + Webex to discuss the project design.
-
+ + Discuss the sequence of customer placing an order.
  + Design User Interface and scope of project.
 
 **Apr 17 :**
 
-Decide technologies and languages for the the project.
++ Decide technologies and languages for the the project.
 
 **April 21:**
+
 + Webex to discuss the project design.
 + Tasks distributions of databases.
 
@@ -34,6 +35,14 @@ Decide technologies and languages for the the project.
     Huy Huynh: Menu.
     Pratik Mehta: Payment.
     Vu Nguyen: Order.
+
+_Challenge_
+
++ The project idea is brand new. All team member did not know this method is exist. 
++ Need to read alots to understand Redis, Go and AWS EC2 instances work together.
+
+_Test_
+ + Test AWS EC2 instances for all personal projects works and the port are opened for outside connection.
 
 ## Week 2 (4/22 - 4/28)
 
@@ -58,12 +67,20 @@ _Done_
 
 **April 26:**
 
-+ Setup partition tolerence demo in each members
++ Setup partition tolerence demo in each members.
++ Access to each database to verify connection with Go.
++ First try to registry and place an order
 
 **April 27:**
 
-Implement Web UI Structure
++ Implement web UI structure and logic of the order.
 
+_Challenge_
+  - Redis is simple to use but the logic is complitely new with "keys" concept.
+  - The problem of customer place order links from Registration - Menu - Order. 
+  
+_Test_
+  Run main.go to check insert data into database.
 
 ## Week 3 (4/28 - 5/4)
 
@@ -91,7 +108,9 @@ Finish Login/Signup page to test with GO API
  + Test again the project UI and database handling with Go.
 
  + Test one cluster that its Redis server works.
+
  **A - All 5 nodes are up and running**
+
   * Master:
 
 key $ssh -i "cmpe281-us-west-1.pem" 
