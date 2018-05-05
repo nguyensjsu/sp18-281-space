@@ -1,18 +1,25 @@
-Team Space Project Journal
 
+# Space Team Project Journal
+
+## Week 1 (4/14-4/21)
+
+**April 10:**
 Apr 15 : Design User Interface and scope of project
 
 Apr 17 : Decide technologies and languages for the the project.
 
 April 21: Task of database.
 
-  Tik: Payment
+  + Tasks distributions
 
-  Vu: Order
+    Hoang Nguyen: Customer
+    Huy Huynh: Menu
+    Pratik Mehta: Payment
+    Vu Nguyen: Order
 
-  Huy: Menu
+  
 
-  Hoang: Customer
+## Week 2 (4/22 - 4/28)
 
 April 23: Setup database Redis on AWS and coding Go API
 
@@ -22,8 +29,11 @@ April 26: Setup partition tolerence demo in each members
 
 April 27: Implement Web UI Structure
 
+
+## Week 3 (4/28 - 5/4)
+
 April 30: Finish personal project to setup database and partition tolerence in each database.
 
-May 1: Continue Go API to insert, retrieve and delete in Redis database  
+May 1: Continue Go API to insert, retrieve and delete in Redis database 
 
 May 2: Finish Login/Signup page to test with GO API
