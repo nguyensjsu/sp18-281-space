@@ -8,6 +8,8 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
+	"encoding/json"
+	"fmt"
 )
 
 var templates *template.Template
@@ -22,7 +24,7 @@ func main() {
 	//	})
 
 	client = redis.NewClient(&redis.Options{
-		Addr:     "54.67.84.81:6379",
+		Addr:     "localhost:6379",
 		Password: "",
 		DB:       0, // use default DB
 	})
@@ -40,12 +42,16 @@ func main() {
 
 	templates = template.Must(template.ParseGlob("templates/*.html"))
 	router := mux.NewRouter()
-	router.HandleFunc("/", getHandler).Methods("GET")
-	router.HandleFunc("/", postHandler).Methods("POST")
+	router.HandleFunc("/", getIndexHandler).Methods("GET")
+	//router.HandleFunc("/", postIndexHandler).Methods("POST")
+	router.HandleFunc("/customerOrder", getCustomerOrderHandler).Methods("GET")
+	router.HandleFunc("/customerOrder", postCustomerOrderHandler).Methods("POST")
+
+	//router.HandleFunc("/", postHandler).Methods("POST")
 
 	router.HandleFunc("/login", loginGetHandler).Methods("GET")
 	router.HandleFunc("/login", loginPostHandler).Methods("POST")
-	router.HandleFunc("/test", testGetHandler).Methods("GET")
+	router.HandleFunc("/signup", signUpPostHandler).Methods("POST")
 
 	fileSer := http.FileServer(http.Dir("./static/"))
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fileSer))
@@ -54,25 +60,48 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func getHandler(writer http.ResponseWriter, re *http.Request) {
+func getCustomerOrderHandler(writer http.ResponseWriter, re *http.Request) {
+	comments, err := client.LRange("customer", 0, 10).Result()
+	if err != nil {
+		return
+	}
+	templates.ExecuteTemplate(writer, "CustomerOrder.html", comments)
+}
+
+
+
+func postCustomerOrderHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	customer := r.PostForm.Get("customer")
+	client.LPush("customer", customer)
+	http.Redirect(w, r, "/customerOrder", 302)
+}
+
+func Index(w http.ResponseWriter, r *http.Request,_ mux.Params) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	posts := FindAll()
+	if err := json.NewEncoder(w).Encode(posts); err != nil {
+		panic(err)
+	}
+	}
+
+
+
+func getIndexHandler(writer http.ResponseWriter, re *http.Request) {
 	comments, err := client.LRange("customer", 0, 10).Result()
 	if err != nil {
 		return
 	}
 	templates.ExecuteTemplate(writer, "index.html", comments)
 }
-
-func postHandler(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	customer := r.PostForm.Get("customer")
-	client.LPush("customer", customer)
-	http.Redirect(w, r, "/", 302)
-}
-
 func loginGetHandler(writer http.ResponseWriter, re *http.Request) {
 	templates.ExecuteTemplate(writer, "login.html", nil)
 }
 
+func signUpPostHandler(writer http.ResponseWriter, re *http.Request) {
+	templates.ExecuteTemplate(writer, "signup.html", nil)
+}
 func loginPostHandler(writer http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	username := req.PostForm.Get("usernname")

@@ -1,19 +1,116 @@
+<!doctype html>
 <html>
-    <head>
-        <title> Customer Registry </title>
-        <link rel="stylesheet" type="text/css" href="static/index.css">
-    </head>
-    <body>
-        <h1> Welcome Customer Registry</h1>
-        <form method="POST">
-            <textarea name="customer"> </textarea>
-            <div>
-                <button type="submit">Submit </button>
-            </div>
-        </form>
-        {{range . }}
-        <div>{{ . }}</div>
-        {{ end }}
-    </body>
+<head>
+  <title>the Counter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="./layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay" style="background-image:url('./images/demo/backgrounds/counter_banner.png');">
+  <!-- ################################################################################################ -->
+  <div class="wrapper">
+    <div id="pageintro" class="hoc clear">
+      <!-- ################################################################################################ -->
+      <article>
+        <h2 class="heading">the COUNTER</h2>
+        <p>CUSTOM BURGERS</p>
+        <footer>
+          <a class="btn" href="login">Login</a>
+        </footer>
+        <footer>
+          <a class="btn" href="signup">SignUp</a>
 
+        </footer>
+      </article>
+      <!-- ################################################################################################ -->
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1><a href="index.html">the COUNTER</a></h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a class="drop" href="#">Pages</a>
+            <ul>
+              <li><a href="">Reserve</a></li>
+              <li><a href="">Reserve</a></li>
+              <li><a href="">Reserve</a></li>
+              <li><a href="">Reserve</a></li>
+              <li><a href="">Reserve</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Reserve</a></li>
+          <li><a href="#">Reserve</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="btmspace-50 center">
+      <h3 class="btmspace-10">Menu Item</h3>
+      <p class="nospace">Menu Items</p>
+    </div>
+    <ul class="nospace clear services">
+      <li class="one_quarter first">
+        <figure><img src="images/demo/gallery/burger_nocheese.png" alt="">
+          <figcaption>Burger</figcaption>
+        </figure>
+        <input class="qty_input" type="number" placeholder="0" name="qtyBurger">
+      </li>
+      <li class="one_quarter">
+        <figure><img src="images/demo/gallery/burger_cheese.png" alt="">
+          <figcaption>Cheese Burger</figcaption>
+        </figure>
+        <input class="qty_input" type="number" placeholder="0" name="qtyCheeseBurger">
+      </li>
+      <li class="one_quarter">
+        <figure><img src="images/demo/gallery/fries.png" alt="">
+          <figcaption>French Fries</figcaption>
+        </figure>
+        <input class="qty_input" type="number" placeholder="0" name="qtyFries">
+      </li>
+      <li class="one_quarter">
+        <figure><img src="images/demo/gallery/soda.png" alt="">
+          <figcaption>Soda Drink</figcaption>
+        </figure>
+        <input class="qty_input" type="number" placeholder="0" name="qtyDrink">
+      </li>
+    </ul>
+    <p class="center"><a class="btn inverse" href="#">Check out</a></p>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+</body>
 </html>
