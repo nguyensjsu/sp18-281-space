@@ -45,6 +45,8 @@ func main() {
 	//router.HandleFunc("/", postIndexHandler).Methods("POST")
 	router.HandleFunc("/customerOrder", getCustomerOrderHandler).Methods("GET")
 	router.HandleFunc("/customerOrder", postCustomerOrderHandler).Methods("POST")
+router.HandleFunc("/reservation", getReservationHandler).Methods("GET")
+	router.HandleFunc("/reservation", postReservationHandler).Methods("POST")
 
 	//router.HandleFunc("/", postHandler).Methods("POST")
 
@@ -69,14 +71,30 @@ func getCustomerOrderHandler(writer http.ResponseWriter, re *http.Request) {
 
 
 
-func postCustomerOrderHandler(w http.ResponseWriter, r *http.Request) {
+func postReservationHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	customer := r.PostForm.Get("customer")
-	client.LPush("customer", customer)
-	http.Redirect(w, r, "/customerOrder", 302)
+	reservation := r.PostForm.Get("reservation")
+	client.RPush("reservation", reservation)
+	http.Redirect(w, r, "/reservation", 302)
 }
 
 
+func getReservationHandler(writer http.ResponseWriter, re *http.Request) {
+	comments, err := client.LRange("reservation", 0, 6).Result()
+	if err != nil {
+		return
+	}
+	templates.ExecuteTemplate(writer, "reservation.html", comments)
+}
+
+
+
+func postCustomerOrderHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	customer := r.PostForm.Get("customer")
+	client.RPush("customer", customer)
+	http.Redirect(w, r, "/customerOrder", 302)
+}
 
 
 
