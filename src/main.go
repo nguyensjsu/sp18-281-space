@@ -8,8 +8,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"encoding/json"
-	"fmt"
+	
 )
 
 var templates *template.Template
@@ -77,14 +76,7 @@ func postCustomerOrderHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/customerOrder", 302)
 }
 
-func Index(w http.ResponseWriter, r *http.Request,_ mux.Params) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-	posts := FindAll()
-	if err := json.NewEncoder(w).Encode(posts); err != nil {
-		panic(err)
-	}
-	}
+
 
 
 
