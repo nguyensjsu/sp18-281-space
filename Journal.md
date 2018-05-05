@@ -218,3 +218,4 @@ Run "sudo yum update" to apply all updates.
 [ec2-user@ip-10-0-0-57 ~]$ redis-cli
 
 127.0.0.1:6379>
+
