@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title> Process Order </title>
+        <link rel="stylesheet" type="text/css" href="static/index.css">
+    </head>
+    <body>
+        <h1> Orders</h1>
+        <form method="get">
+            <textarea name="customerOrder"> </textarea>
+            <div>
+                <button type="submit">Query </button>
+            </div>
+        </form>
+        {{range . }}
+        <div>{{ . }}</div>
+        {{ end }}
+    </body>
+
+</html>
