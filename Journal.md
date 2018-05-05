@@ -3,10 +3,18 @@
 
 ## Week 1 (4/14-4/21)
 
-**April 10:**
++ Design and brainstroming the project work flow, structures and how all those personal databases 
+can connect with a Go API and each database serve for one single feature of the API.
+  
++ Coding HTML, JavaScript for front end of Counter Burger order.
++ Coding Go and Redis for back end to connect to database.
++ Each master node will talk with the rest of the nodes to replicate the data. 
++ 
 
+**April 10:**
+ 
 **Apr 15 :**
- * Webex to discuss the project design
+ + Webex to discuss the project design
 
  Design User Interface and scope of project
 
@@ -15,8 +23,8 @@
 Decide technologies and languages for the the project.
 
 **April 21:**
-
-  + Tasks distributions of databases
++ Webex to discuss the project design
++ Tasks distributions of databases
 
     Hoang Nguyen: Customer
     Huy Huynh: Menu
@@ -49,6 +57,7 @@ Implement Web UI Structure
 Finish personal project to setup database and partition tolerence in each database.
 
 **May 1:**
++ Webex to discuss the project design
 
 Continue Go API to insert, retrieve and delete in Redis database 
 
@@ -59,5 +68,10 @@ Finish Login/Signup page to test with GO API
 **May 3:** 
 
  + Test the HTML pages for Login, Registration, Menu and Orders
- 
+
  + Test Redis database with GO API. The API now can access all the databases and bind the front end to process registration, handel order.
+
+ **May 4:** 
+ 
+ + Test again the project UI and database handling with Go.
+ 
