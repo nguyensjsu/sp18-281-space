@@ -35,8 +35,16 @@ Decide technologies and languages for the the project.
 
 **April 23:**
 
-Setup database Redis on AWS and coding Go API
++ Setup database Redis on AWS and coding Go API
 
++ Set Access Redis database
+ 
+```client = redis.NewClient(&redis.Options{
+      Addr:     "54.67.84.81:6379",
+      Password: "", // No password
+      DB:       0, // use default DB
+	})
+```
 **April 24:**
 
 Finish the database design
@@ -74,4 +82,115 @@ Finish Login/Signup page to test with GO API
  **May 4:** 
  
  + Test again the project UI and database handling with Go.
- 
+
+ + Test one cluster that its Redis server works.
+ **A - All 5 nodes are up and running**
+  * Master:
+
+key $ssh -i "cmpe281-us-west-1.pem" 
+ec2-user@ec2-54-67-84-81.us-west-1.compute.amazonaws.com
+
+Last login: Sat May  5 03:59:03 2018 from 130.65.254.5
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+No packages needed for security; 3 packages available
+
+Run "sudo yum update" to apply all updates.
+
+[ec2-user@ip-10-0-0-85 ~]$ redis-cli
+
+127.0.0.1:6379> 
+
+ * Slave 1:
+
+key $ssh -i "cmpe281-us-west-1.pem" 
+ec2-user@ec2-54-193-65-181.us-west-1.compute.amazonaws.com
+
+Last login: Sat May  5 04:34:09 2018 from 130.65.254.5
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+No packages needed for security; 3 packages available
+
+Run "sudo yum update" to apply all updates.
+
+[ec2-user@ip-10-0-0-47 ~]$ redis-cli
+
+127.0.0.1:6379> 
+
+* Slave 2:
+
+key $ssh -i "cmpe281-us-west-1.pem" 
+
+ec2-user@ec2-54-193-126-82.us-west-1.compute.amazonaws.com
+
+Last login: Sat May  5 04:26:51 2018 from 130.65.254.5
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+No packages needed for security; 3 packages available
+
+Run "sudo yum update" to apply all updates.
+
+[ec2-user@ip-10-0-0-90 ~]$ redis-cli
+
+127.0.0.1:6379> 
+
+* Slave 3:
+
+key $ssh -i "cmpe281-us-west-1.pem" 
+
+ec2-user@ec2-13-56-213-228.us-west-1.compute.amazonaws.com
+
+Last login: Sat May  5 04:26:48 2018 from 130.65.254.5
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+No packages needed for security; 3 packages available
+
+Run "sudo yum update" to apply all updates.
+
+[ec2-user@ip-10-0-0-240 ~]$ redis-cli
+
+127.0.0.1:6379> 
+
+* Slave 4:
+
+key $ssh -i "cmpe281-us-west-1.pem" 
+
+ec2-user@ec2-13-57-32-130.us-west-1.compute.amazonaws.com
+
+Last login: Sat May  5 04:26:54 2018 from 130.65.254.5
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+No packages needed for security; 3 packages available
+
+Run "sudo yum update" to apply all updates.
+
+[ec2-user@ip-10-0-0-57 ~]$ redis-cli
+
+127.0.0.1:6379> 
+
+
